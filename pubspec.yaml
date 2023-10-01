@@ -50,6 +50,7 @@ dependencies:
   flutter_smart_dialog: ^4.9.4
   progress_dialog_null_safe: ^1.0.7
   fluttertoast: ^8.2.2
+  equatable: ^2.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
