@@ -34,7 +34,6 @@ class HomePageState extends State<HomePage> {
                 Get.to(const AddTaskPage());
               },
             ),
-            const InputField(title: "walid", hint: "email",widget: Icon(Icons.visibility_off),)
           ],
         ),
       ),

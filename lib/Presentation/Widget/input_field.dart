@@ -53,7 +53,7 @@ class InputField extends StatelessWidget {
                     ),
                     controller: myController,
                     autofocus: false,
-                    cursorColor: Get.isDarkMode?Colors.white:Colors.black,
+                    cursorColor: Get.isDarkMode?Colors.white:darkGreyClr,
                     readOnly: widget==null?false:true,
                     style: Thems().subtitleStyle,
                   ),
