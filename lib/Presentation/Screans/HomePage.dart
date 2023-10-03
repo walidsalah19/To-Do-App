@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:todoapp/Presentation/Screans/AddTaskPage.dart';
 import 'package:todoapp/Presentation/Widget/button.dart';
 import 'package:todoapp/Presentation/Widget/input_field.dart';
 import 'package:todoapp/Presentation/size_config.dart';
@@ -22,19 +24,18 @@ class HomePageState extends State<HomePage> {
           icon: const Icon(Icons.change_circle),
         ),
       ),
-      body: Container(
-        child: Center(
-          child: Column(
-            children: [
-              MyButton(
-                lable: "tab this",
-                onTab: () {
-                  ThemeServices().switchTheme();
-                },
-              ),
-              const InputField(title: "walid", note: "")
-            ],
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            MyButton(
+              lable: "tab this",
+              onTab: () {
+               // ThemeServices().switchTheme();
+                Get.to(const AddTaskPage());
+              },
+            ),
+            const InputField(title: "walid", hint: "email",widget: Icon(Icons.visibility_off),)
+          ],
         ),
       ),
     );
