@@ -108,7 +108,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                   items: _reminderList
                       .map<DropdownMenuItem<String>>(
                           (int value) => DropdownMenuItem<String>(
-                              value:value.toString(),
+                              value: value.toString(),
                               child: Text(
                                 "$value",
                                 style: Thems().subtitleStyle,
@@ -116,7 +116,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                       .toList(),
                   onChanged: (value2) {
                     setState(() {
-                      _selectReminders =int.parse( value2!);
+                      _selectReminders = int.parse(value2!);
                     });
                   },
                   icon: const Icon(Icons.keyboard_arrow_down),
@@ -150,13 +150,59 @@ class _AddTaskPageState extends State<AddTaskPage> {
                     height: 0,
                   ),
                 )),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [MyButton(lable: "add task", onTab: () {})],
+            Container(
+              margin: const EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _colorsCircles(),
+                  MyButton(lable: "add task", onTab: () {}),
+                ],
+              ),
             )
           ],
         ),
       ),
     );
+  }
+
+  Widget _colorsCircles() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Colors",
+          style: Thems().titleStyle,
+        ),
+        Wrap(
+            children: List<Widget>.generate(
+                3,
+                (index) => InkWell(
+                    onTap: () {
+                      _changeColor(1);
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: index == 0
+                          ? primaryClr
+                          : index == 1
+                              ? pinkClr
+                              : orangeClr,
+                      child: index == _selectColor
+                          ? const Icon(
+                              Icons.done,
+                              color: Colors.white,
+                              size: 16,
+                            )
+                          : null,
+                    ))))
+      ],
+    );
+  }
+
+  _changeColor(int val) {
+    setState(() {
+      _selectColor = val;
+    });
   }
 }
