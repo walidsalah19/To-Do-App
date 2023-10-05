@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:todoapp/Presentation/Screans/HomePage.dart';
 import 'package:todoapp/Presentation/TaskController.dart';
 import 'package:todoapp/Presentation/Thems.dart';
 import 'package:todoapp/Presentation/Widget/button.dart';
@@ -33,15 +34,12 @@ class _AddTaskPageState extends State<AddTaskPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "To Do",
-          style: Thems().titleStyle,
-        ),
-      ),
+      backgroundColor: context.theme.backgroundColor,
+      appBar:_AppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const SizedBox(height:10),
             Text(
               "Add Task",
               style: Thems().headingStyle,
@@ -176,11 +174,13 @@ class _AddTaskPageState extends State<AddTaskPage> {
           style: Thems().titleStyle,
         ),
         Wrap(
+          alignment: WrapAlignment.spaceBetween,
+            spacing: 10,
             children: List<Widget>.generate(
                 3,
                 (index) => InkWell(
                     onTap: () {
-                      _changeColor(1);
+                      _changeColor(index);
                     },
                     child: CircleAvatar(
                       backgroundColor: index == 0
@@ -204,5 +204,23 @@ class _AddTaskPageState extends State<AddTaskPage> {
     setState(() {
       _selectColor = val;
     });
+  }
+  AppBar _AppBar()
+  {
+   return AppBar(
+     leading: IconButton(
+       icon: const Icon(Icons.arrow_back_ios,
+       color: primaryClr,),
+       onPressed: () {
+         Get.to(HomePage());
+       },
+     ),
+     elevation: 0,
+     backgroundColor: context.theme.backgroundColor,
+     title: Text(
+     "To Do",
+     style: Thems().titleStyle,
+     ),
+   ) ;
   }
 }

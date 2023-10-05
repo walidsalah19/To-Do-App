@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todoapp/Presentation/Screans/AddTaskPage.dart';
 import 'package:todoapp/Presentation/Widget/button.dart';
-import 'package:todoapp/Presentation/Widget/input_field.dart';
 import 'package:todoapp/Presentation/size_config.dart';
 import 'package:todoapp/services/theme_services.dart';
 
@@ -16,25 +15,35 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            ThemeServices().switchTheme();
-          },
-          icon: const Icon(Icons.change_circle),
-        ),
-      ),
+      backgroundColor: context.theme.backgroundColor,
+      appBar: _AppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
             MyButton(
               lable: "tab this",
               onTab: () {
-               // ThemeServices().switchTheme();
+                // ThemeServices().switchTheme();
                 Get.to(const AddTaskPage());
               },
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  AppBar _AppBar() {
+    return AppBar(
+      leading: IconButton(
+        onPressed: () {
+          setState(() {
+            ThemeServices().switchTheme();
+          });
+        },
+        icon: Icon(
+          ! Get.isDarkMode ? Icons.sunny : Icons.nightlight,
+          //color: Get.isDarkMode ? Colors.white : Colors.grey,
         ),
       ),
     );
