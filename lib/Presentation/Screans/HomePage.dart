@@ -1,4 +1,6 @@
+import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:todoapp/Presentation/Screans/AddTaskPage.dart';
@@ -14,6 +16,7 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   final TaskController _taskController = Get.put(TaskController());
+  DateTime _selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +27,11 @@ class HomePageState extends State<HomePage> {
         body: Column(
           children: [
             _addTaskBar(),
-            //_addDateBar(),
+            _addDateBar(),
             const SizedBox(
               height: 6,
             ),
-            // _showTasks()
+            _showTasks()
           ],
         ));
   }
@@ -49,9 +52,36 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-  _showTasks() {}
+  Widget _showTasks() {
+    return _onTaskMessage(); /*Expanded(child:Obx((){
+      if(*/ /*_taskController.taskList.isEmpty*/ /* true)
+        {
+          return _onTaskMessage();
+        }else{
+        return Container(height: 9,);
+      }
+    }));*/
+  }
 
-  _addDateBar() {}
+  Widget _addDateBar() {
+    return Container(
+      margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 10),
+      child: DatePicker(
+        DateTime.now(),
+        width: 70,
+        height: 100,
+        initialSelectedDate: DateTime.now(),
+        selectedTextColor: Colors.black,
+        selectionColor: primaryClr,
+        onDateChange: (date) {
+          setState(() {
+            _selectedDate = date;
+            print(_selectedDate);
+          });
+        },
+      ),
+    );
+  }
 
   Widget _addTaskBar() {
     return Container(
@@ -92,4 +122,27 @@ class HomePageState extends State<HomePage> {
           style: const TextStyle(fontSize: 18, color: Colors.white),
         ));
   }
+}
+
+Widget _onTaskMessage() {
+  return SingleChildScrollView(
+    child: Column(
+      children: [
+        SvgPicture.asset(
+          "images/task.svg",
+        ),
+        const Padding(
+          padding:  EdgeInsets.all(15.0),
+          child:  Text(
+            "No Tasks",
+            style: TextStyle(
+              color: primaryClr,
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        )
+      ],
+    ),
+  );
 }
