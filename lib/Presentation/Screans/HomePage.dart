@@ -20,13 +20,6 @@ class HomePageState extends State<HomePage> {
   final TaskController _taskController = Get.put(TaskController());
   DateTime _selectedDate = DateTime.now();
   double _width = 200;
-@override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    //NotifyHelper().showNotification();
-
-}
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -142,7 +135,7 @@ class HomePageState extends State<HomePage> {
               builder: (BuildContext context, double wi, Widget? child) {
                 return InkWell(
                   onTap: () {
-                    setState(() {
+                    setState(()  {
                       print("walid salah");
                       _width = _width == 200.0 ? 50.0 : 200.0;
                     });

@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:todoapp/AppRouts.dart';
 import 'package:todoapp/Presentation/Screans/HomePage.dart';
 import 'package:todoapp/Presentation/Thems.dart';
+import 'package:todoapp/services/notification_services.dart';
 import 'package:todoapp/services/theme_services.dart';
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp( MyApp());
 }
 
