@@ -17,6 +17,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   final TaskController _taskController = Get.put(TaskController());
   DateTime _selectedDate = DateTime.now();
+  double _width = 200;
 
   @override
   Widget build(BuildContext context) {
@@ -122,27 +123,42 @@ class HomePageState extends State<HomePage> {
           style: const TextStyle(fontSize: 18, color: Colors.white),
         ));
   }
-}
 
-Widget _onTaskMessage() {
-  return SingleChildScrollView(
-    child: Column(
-      children: [
-        SvgPicture.asset(
-          "images/task.svg",
-        ),
-        const Padding(
-          padding:  EdgeInsets.all(15.0),
-          child:  Text(
-            "No Tasks",
-            style: TextStyle(
-              color: primaryClr,
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
+  Widget _onTaskMessage() {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          TweenAnimationBuilder(
+              tween: Tween<double>(begin: 0, end: _width),
+              duration: const Duration(microseconds: 2000),
+              builder: (BuildContext context, double wi, Widget? child) {
+                return InkWell(
+                  onTap: () {
+                    setState(() {
+                      print("walid salah");
+                      _width = _width == 200.0 ? 50.0 : 200.0;
+                    });
+                  },
+                  child: SvgPicture.asset(
+                    "images/task.svg",
+                    width: _width,
+                    height: _width, // You can adjust the height as needed
+                  ),
+                );
+              }),
+          const Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              "No Tasks",
+              style: TextStyle(
+                color: primaryClr,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-        )
-      ],
-    ),
-  );
+          )
+        ],
+      ),
+    );
+  }
 }
