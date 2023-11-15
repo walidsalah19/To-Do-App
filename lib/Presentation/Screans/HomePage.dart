@@ -9,6 +9,8 @@ import 'package:todoapp/Presentation/Thems.dart';
 import 'package:todoapp/Presentation/size_config.dart';
 import 'package:todoapp/services/theme_services.dart';
 
+import '../../services/notification_services.dart';
+
 class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => HomePageState();
@@ -18,7 +20,13 @@ class HomePageState extends State<HomePage> {
   final TaskController _taskController = Get.put(TaskController());
   DateTime _selectedDate = DateTime.now();
   double _width = 200;
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //NotifyHelper().showNotification();
 
+}
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
