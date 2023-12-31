@@ -9,7 +9,7 @@ import 'package:todoapp/Presentation/Thems.dart';
 import 'package:todoapp/Presentation/size_config.dart';
 import 'package:todoapp/services/theme_services.dart';
 
-import '../../services/notification_services.dart';
+import '../../BannerAD.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -20,9 +20,25 @@ class HomePageState extends State<HomePage> {
   final TaskController _taskController = Get.put(TaskController());
   DateTime _selectedDate = DateTime.now();
   double _width = 200;
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+/*
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("banner"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: const <Widget>[
+            BannerAD(),
+          ],
+        ),
+      ),
+    );
+*/
     return Scaffold(
         backgroundColor: context.theme.backgroundColor,
         appBar: _AppBar(),
@@ -135,7 +151,7 @@ class HomePageState extends State<HomePage> {
               builder: (BuildContext context, double wi, Widget? child) {
                 return InkWell(
                   onTap: () {
-                    setState(()  {
+                    setState(() {
                       print("walid salah");
                       _width = _width == 200.0 ? 50.0 : 200.0;
                     });
